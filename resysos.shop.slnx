@@ -8,6 +8,7 @@
   <Folder Name="/src/BuildingBlock/Foundation/Specifications/">
     <Project Path="src/BuildingBlock/Foundation/Specifications/Specification.Abstract/BuildingBlock.Specification.Abstract.csproj" />
     <Project Path="src/BuildingBlock/Foundation/Specifications/Specifications.EfCore/BuildingBlock.Specifications.EfCore.csproj" />
+    <Project Path="src/BuildingBlock/Foundation/Specifications/Specifications.InMemory/BuildingBlock.Specifications.InMemory.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/BuildingBlock/Foundation/Domain/BuildingBlock.Domain.Unit.Test.csproj" />
