@@ -1,0 +1,70 @@
+<Project>
+  <!-- resysos.shop | Guard rails (imported after the project body). One table row per rule; all violations
+       are reported in one run. Codes: 001 TFM, 002 Nullable, 003 Analyzers, 004 WarnAsError, 005 Deterministic,
+       006 DebugType, 007 CI switches, 008 Source Link, 009 Pack metadata, 010 Test SDK, 011 Test packed,
+       012 Test published, 013 Lock files, 014 CPM, 015 AnalysisLevel, 016 Code style, 017 Audit, 018 VersionOverride. -->
+
+  <PropertyGroup>
+    <IsTestProject>$(_IsTestProjectByPath)</IsTestProject>
+    <Profile>Production</Profile>
+    <Profile Condition="'$(IsTestProject)' == 'true'">Tests</Profile>
+    <!-- BenchmarkDotNet generates a temporary project under .bdn; repository policy does not apply to it. -->
+    <_IsBenchmarkGenerated>false</_IsBenchmarkGenerated>
+    <_IsBenchmarkGenerated Condition="$([System.String]::Copy('$(MSBuildProjectDirectory)').Contains('.bdn'))">true</_IsBenchmarkGenerated>
+    <_Validate Condition="'$(DesignTimeBuild)' != 'true' AND '$(_IsBenchmarkGenerated)' != 'true'">true</_Validate>
+  </PropertyGroup>
+
+  <Target Name="ValidatePolicy" BeforeTargets="Restore;PrepareForBuild" Condition="'$(_Validate)' == 'true'">
+    <ItemGroup>
+      <_Policy Include="TargetFramework"                         Code="RESYS001" Expected="net11.0"  Actual="$(TargetFramework)" />
+      <_Policy Include="TargetFrameworks"                        Code="RESYS001" Expected=""         Actual="$(TargetFrameworks)" />
+      <_Policy Include="Nullable"                                Code="RESYS002" Expected="enable"   Actual="$(Nullable)" />
+      <_Policy Include="EnableNETAnalyzers"                      Code="RESYS003" Expected="true"     Actual="$(EnableNETAnalyzers)" />
+      <_Policy Include="TreatWarningsAsErrors"                   Code="RESYS004" Expected="true"     Actual="$(TreatWarningsAsErrors)" />
+      <_Policy Include="Deterministic"                           Code="RESYS005" Expected="true"     Actual="$(Deterministic)" />
+      <_Policy Include="DebugType"                               Code="RESYS006" Expected="portable" Actual="$(DebugType)" />
+      <_Policy Include="AnalysisLevel"                           Code="RESYS015" Expected="latest"   Actual="$(AnalysisLevel)" />
+      <_Policy Include="EnforceCodeStyleInBuild"                 Code="RESYS016" Expected="true"     Actual="$(EnforceCodeStyleInBuild)" />
+      <_Policy Include="NuGetAudit"                              Code="RESYS017" Expected="true"     Actual="$(NuGetAudit)" />
+      <_Policy Include="NuGetAuditMode"                          Code="RESYS017" Expected="all"      Actual="$(NuGetAuditMode)" />
+      <_Policy Include="NuGetAuditLevel"                         Code="RESYS017" Expected="moderate" Actual="$(NuGetAuditLevel)" />
+      <_Policy Include="ManagePackageVersionsCentrally"          Code="RESYS014" Expected="true"     Actual="$(ManagePackageVersionsCentrally)" />
+      <_Policy Include="CentralPackageTransitivePinningEnabled"  Code="RESYS014" Expected="true"     Actual="$(CentralPackageTransitivePinningEnabled)" />
+      <_Policy Include="CentralPackageVersionOverrideEnabled"    Code="RESYS018" Expected="false"    Actual="$(CentralPackageVersionOverrideEnabled)" />
+      <_Policy Condition="'$(CI)' == 'true'" Include="ContinuousIntegrationBuild" Code="RESYS007" Expected="true" Actual="$(ContinuousIntegrationBuild)" />
+      <_Policy Condition="'$(CI)' == 'true'" Include="RestorePackagesWithLockFile" Code="RESYS013" Expected="true" Actual="$(RestorePackagesWithLockFile)" />
+      <_Policy Condition="'$(CI)' == 'true'" Include="RestoreLockedMode"           Code="RESYS013" Expected="true" Actual="$(RestoreLockedMode)" />
+      <_Policy Condition="'$(CI)' == 'true' AND '$(IsTestProject)' != 'true'" Include="PublishRepositoryUrl" Code="RESYS008" Expected="true" Actual="$(PublishRepositoryUrl)" />
+      <_Policy Condition="'$(CI)' == 'true' AND '$(IsTestProject)' != 'true'" Include="RepositoryType"       Code="RESYS008" Expected="git"  Actual="$(RepositoryType)" />
+    </ItemGroup>
+
+    <Error Code="%(_Policy.Code)" ContinueOnError="ErrorAndContinue"
+           Condition="'%(_Policy.Actual)' != '%(_Policy.Expected)'"
+           Text="[$(Profile)] $(MSBuildProjectName): %(_Policy.Identity) must be '%(_Policy.Expected)' (current: '%(_Policy.Actual)')." />
+    <Error Code="RESYS008" Condition="'$(CI)' == 'true' AND '$(IsTestProject)' != 'true' AND '$(RepositoryUrl)' == ''"
+           Text="[$(Profile)] $(MSBuildProjectName): CI builds require RepositoryUrl." />
+    <Error Code="RESYS010"
+           Condition="'$(IsTestProject)' == 'true' AND '$(RequireTestSdk)' != 'false' AND '@(PackageReference->WithMetadataValue('Identity', 'Microsoft.NET.Test.Sdk'))' == ''"
+           Text="[$(Profile)] $(MSBuildProjectName) must reference Microsoft.NET.Test.Sdk (or set RequireTestSdk=false for helpers)." />
+  </Target>
+
+  <Target Name="ValidatePack" BeforeTargets="Pack;GenerateNuspec"
+          Condition="'$(_Validate)' == 'true' AND '$(IsTestProject)' != 'true' AND '$(IsPackable)' == 'true'">
+    <Error Code="RESYS009" Condition="'$(RepositoryUrl)' == ''" Text="[$(Profile)] $(MSBuildProjectName): packable projects must define RepositoryUrl." />
+    <Error Code="RESYS009" Condition="'$(PackageLicenseExpression)' == '' AND '$(PackageLicenseFile)' == ''" Text="[$(Profile)] $(MSBuildProjectName): packable projects must define a license." />
+  </Target>
+
+  <Target Name="PreventTestPack" BeforeTargets="Pack;GenerateNuspec"
+          Condition="'$(_Validate)' == 'true' AND '$(IsTestProject)' == 'true' AND '$(IsPackable)' == 'true'">
+    <Error Code="RESYS011" Text="[$(Profile)] $(MSBuildProjectName) cannot be packed (IsPackable must stay false)." />
+  </Target>
+
+  <Target Name="PreventTestPublish" BeforeTargets="Publish"
+          Condition="'$(_Validate)' == 'true' AND '$(IsTestProject)' == 'true' AND '$(IsPublishable)' == 'true'">
+    <Error Code="RESYS012" Text="[$(Profile)] $(MSBuildProjectName) cannot be published (IsPublishable must stay false)." />
+  </Target>
+
+  <Target Name="BuildInformation" AfterTargets="Build" Condition="'$(_Validate)' == 'true' AND '$(CI)' == 'true'">
+    <Message Importance="High" Text="resysos.shop [$(Profile)] | $(MSBuildProjectName) | $(TargetFramework) | $(Configuration) | v$(Version)" />
+  </Target>
+</Project>

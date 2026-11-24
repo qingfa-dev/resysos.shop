@@ -1,0 +1,79 @@
+<Project>
+  <!-- resysos.shop | Repository-wide defaults (imported early). Versions: Directory.Packages.props. Validation: Directory.Build.targets. -->
+
+  <!-- Profile: tests/** = Tests, tests/Shared/** = Production (support libs). NormalizeDirectory keeps separators
+       consistent; never append a literal 'Shared/' to a normalized path (breaks on Windows). -->
+  <PropertyGroup>
+    <_TestsRoot>$([MSBuild]::NormalizeDirectory('$(MSBuildThisFileDirectory)', 'tests'))</_TestsRoot>
+    <_SupportRoot>$([MSBuild]::NormalizeDirectory('$(MSBuildThisFileDirectory)', 'tests', 'Shared'))</_SupportRoot>
+    <_ProjectDirectory>$([MSBuild]::NormalizeDirectory('$(MSBuildProjectDirectory)'))</_ProjectDirectory>
+    <_PathComparison>Ordinal</_PathComparison>
+    <_PathComparison Condition="!$([MSBuild]::IsOSPlatform('Linux'))">OrdinalIgnoreCase</_PathComparison>
+
+    <_IsTestProjectByPath>false</_IsTestProjectByPath>
+    <_IsTestProjectByPath Condition="$(_ProjectDirectory.StartsWith('$(_TestsRoot)', System.StringComparison.$(_PathComparison)))">true</_IsTestProjectByPath>
+    <_IsTestProjectByPath Condition="$(_ProjectDirectory.StartsWith('$(_SupportRoot)', System.StringComparison.$(_PathComparison)))">false</_IsTestProjectByPath>
+    <IsTestProject>$(_IsTestProjectByPath)</IsTestProject> <!-- re-applied in .targets -->
+
+    <RepositoryWebUrl>https://github.com/qingfa-dev/resysos.shop</RepositoryWebUrl>
+  </PropertyGroup>
+
+  <!-- Shared policy. Audit findings >= moderate fail restore (warnings are errors). -->
+  <PropertyGroup>
+    <TargetFramework Condition="'$(TargetFramework)' == ''">net11.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <DebugType>portable</DebugType>
+    <Deterministic>true</Deterministic>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NuGetAudit>true</NuGetAudit>
+    <NuGetAuditMode>all</NuGetAuditMode>
+    <NuGetAuditLevel>moderate</NuGetAuditLevel>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <OptimizeImplicitlyTriggeredBuild>true</OptimizeImplicitlyTriggeredBuild>
+    <IsPackable>false</IsPackable>
+    <NoWarn>$(NoWarn);CA1716</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(CI)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <RestoreLockedMode>true</RestoreLockedMode>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+
+  <!-- Production (also tests/Shared). Doc file is required for IDE0005 enforcement. Source Link is built into the SDK. -->
+  <PropertyGroup Condition="'$(IsTestProject)' != 'true'">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CA1848;CS1591</NoWarn>
+    <Authors>阮青發</Authors>
+    <Company>RSsys</Company>
+    <Product>resysos.shop</Product>
+    <Copyright>Copyright © ReSys Team</Copyright>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <RepositoryUrl>$(RepositoryWebUrl).git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>$(RepositoryWebUrl)</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <!-- Tests: xunit.v3 on Microsoft.Testing.Platform. On the .NET 10 SDK, opt in via global.json
+       { "test": { "runner": "Microsoft.Testing.Platform" } }; the property below only affects VSTest-bridge mode. -->
+  <PropertyGroup Condition="'$(IsTestProject)' == 'true'">
+    <IsPackable>false</IsPackable>
+    <IsPublishable>false</IsPublishable>
+    <OutputType>Exe</OutputType>
+    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
+    <NoWarn>$(NoWarn);CS1573;CA1707;xUnit1051;CA1861</NoWarn>
+    <_XunitRunnerJson>$([MSBuild]::NormalizePath('$(MSBuildThisFileDirectory)', 'tests', 'xunit.runner.json'))</_XunitRunnerJson>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(IsTestProject)' == 'true'">
+    <None Remove="$(_XunitRunnerJson)" />
+    <None Include="$(_XunitRunnerJson)" Link="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" Condition="Exists('$(_XunitRunnerJson)')" />
+    <PackageReference Include="Microsoft.Testing.Extensions.TrxReport" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Testing.Extensions.CodeCoverage" PrivateAssets="all" />
+  </ItemGroup>
+</Project>
