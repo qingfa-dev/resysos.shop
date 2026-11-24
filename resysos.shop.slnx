@@ -2,9 +2,12 @@
   <Folder Name="/src/" />
   <Folder Name="/src/BuildingBlock/" />
   <Folder Name="/src/BuildingBlock/Foundation/">
+    <Project Path="src/BuildingBlock/Foundation/Domain/BuildingBlock.Domain.csproj" />
     <Project Path="src/BuildingBlock/Foundation/Functional/BuildingBlock.Functional.csproj" />
   </Folder>
-  <Folder Name="/tests/" />
+  <Folder Name="/tests/">
+    <Project Path="tests/BuildingBlock/Foundation/Domain/BuildingBlock.Domain.Unit.Test.csproj" />
+  </Folder>
   <Folder Name="/tests/BuildingBlock/" />
   <Folder Name="/tests/BuildingBlock/Foundation/">
     <Project Path="tests/BuildingBlock/Foundation/Functional.Unit.Test/BuildingBlock.Functional.Unit.Test.csproj" />
