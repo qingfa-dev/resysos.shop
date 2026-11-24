@@ -5,11 +5,17 @@
     <Project Path="src/BuildingBlock/Foundation/Domain/BuildingBlock.Domain.csproj" />
     <Project Path="src/BuildingBlock/Foundation/Functional/BuildingBlock.Functional.csproj" />
   </Folder>
+  <Folder Name="/src/BuildingBlock/Foundation/Specifications/">
+    <Project Path="src/BuildingBlock/Foundation/Specifications/BuildingBlock.Specification.Abstract/BuildingBlock.Specification.Abstract.csproj" />
+  </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/BuildingBlock/Foundation/Domain/BuildingBlock.Domain.Unit.Test.csproj" />
   </Folder>
   <Folder Name="/tests/BuildingBlock/" />
   <Folder Name="/tests/BuildingBlock/Foundation/">
     <Project Path="tests/BuildingBlock/Foundation/Functional/BuildingBlock.Functional.Unit.Test.csproj" />
+  </Folder>
+  <Folder Name="/tests/BuildingBlock/Foundation/Specifications/">
+    <Project Path="tests/BuildingBlock/Foundation/Specifications/Specification.Abstract/BuildingBlock.Specification.Unit.Tests.csproj" />
   </Folder>
 </Solution>
