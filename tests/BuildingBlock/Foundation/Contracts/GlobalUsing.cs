@@ -1,0 +1,9 @@
+global using AwesomeAssertions;
+global using BuildingBlock.Contracts.Events;
+global using BuildingBlock.Contracts.Filtering;
+global using BuildingBlock.Contracts.Paging;
+global using BuildingBlock.Contracts.Querying;
+global using BuildingBlock.Contracts.Sorting;
+global using BuildingBlock.Functional.Errors;
+global using BuildingBlock.Functional.Metadata;
+global using BuildingBlock.Functional.Results;

@@ -16,6 +16,7 @@
   </Folder>
   <Folder Name="/tests/BuildingBlock/" />
   <Folder Name="/tests/BuildingBlock/Foundation/">
+    <Project Path="tests/BuildingBlock/Foundation/Contracts/BuildingBlock.Contracts.Unit.Tests.csproj" />
     <Project Path="tests/BuildingBlock/Foundation/Functional/BuildingBlock.Functional.Unit.Test.csproj" />
   </Folder>
   <Folder Name="/tests/BuildingBlock/Foundation/Specifications/">
