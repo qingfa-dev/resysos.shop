@@ -6,7 +6,7 @@
     <Project Path="src/BuildingBlock/Foundation/Functional/BuildingBlock.Functional.csproj" />
   </Folder>
   <Folder Name="/src/BuildingBlock/Foundation/Specifications/">
-    <Project Path="src/BuildingBlock/Foundation/Specifications/BuildingBlock.Specification.Abstract/BuildingBlock.Specification.Abstract.csproj" />
+    <Project Path="src/BuildingBlock/Foundation/Specifications/Specification.Abstract/BuildingBlock.Specification.Abstract.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/BuildingBlock/Foundation/Domain/BuildingBlock.Domain.Unit.Test.csproj" />
