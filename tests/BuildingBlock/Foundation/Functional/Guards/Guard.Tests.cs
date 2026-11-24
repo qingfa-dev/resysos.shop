@@ -1,5 +1,3 @@
-using BuildingBlock.Functional.Guards;
-
 namespace BuildingBlock.Functional.Unit.Test.Guards;
 
 /// <summary>Specifications for <see cref="Guard"/> covering result-based guard clauses.</summary>
