@@ -1,4 +1,4 @@
-namespace BuildingBlock.Domain.StronglyTypedId;
+namespace BuildingBlock.Domain.StronglyTypedIds;
 
 /// <summary>
 /// Base record for strongly typed identifiers. Wrapping a primitive identifier

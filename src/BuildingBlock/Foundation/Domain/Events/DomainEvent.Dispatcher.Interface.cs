@@ -1,6 +1,4 @@
 using BuildingBlock.Domain.Aggregate;
-using BuildingBlock.Domain.Events;
-using BuildingBlock.Domain.Modeling.Foundation.Identifiable;
 
 namespace BuildingBlock.Domain.Events;
 
