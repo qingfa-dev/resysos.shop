@@ -2,8 +2,8 @@ using BuildingBlock.Domain.SmartEnums;
 
 namespace BuildingBlock.Domain.Unit.Test.SmartEnums;
 
-/// <summary>Specifications for <see cref="SmartEnum{TEnum}"/> covering registration, lookup, and equality.</summary>
-public sealed class SmartEnumSpec
+/// <summary>Tests for <see cref="SmartEnum{TEnum}"/> covering registration, lookup, and equality.</summary>
+public sealed class SmartEnumTests
 {
     #region Helper Types
 

@@ -2,8 +2,8 @@ using BuildingBlock.Domain.SmartEnums;
 
 namespace BuildingBlock.Domain.Unit.Test.SmartEnums;
 
-/// <summary>Specifications for <see cref="SmartEnumConstant"/> covering constant values and errors.</summary>
-public sealed class SmartEnumConstantSpec
+/// <summary>Tests for <see cref="SmartEnumConstant"/> covering constant values and errors.</summary>
+public sealed class SmartEnumConstantTests
 {
     [Fact]
     public void FailureCodes_ShouldMatchDocumentedCodes()

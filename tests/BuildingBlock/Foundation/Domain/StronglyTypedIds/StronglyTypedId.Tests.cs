@@ -1,9 +1,7 @@
-using BuildingBlock.Domain.StronglyTypedId;
-
 namespace BuildingBlock.Domain.Unit.Test.StronglyTypedIds;
 
-/// <summary>Specifications for <see cref="StronglyTypedId{TValue}"/> and its Guid and string bases.</summary>
-public sealed class StronglyTypedIdSpec
+/// <summary>Tests for <see cref="StronglyTypedId{TValue}"/> and its Guid and string bases.</summary>
+public sealed class StronglyTypedIdTests
 {
     #region Helper Types
 
