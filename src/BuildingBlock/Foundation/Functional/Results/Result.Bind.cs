@@ -1,5 +1,3 @@
-using BuildingBlock.Functional.Results;
-
 namespace BuildingBlock.Functional.Results;
 
 /// <summary>Monad bind/flatMap operation: chain a result-producing function.</summary>

@@ -1,4 +1,4 @@
-namespace BuildingBlock.Domain.Unit.Tests.Functional.Errors;
+namespace BuildingBlock.Domain.Unit.Test.Functional.Errors;
 
 using BuildingBlock.Functional.Errors;
 using Xunit;

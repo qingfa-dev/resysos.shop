@@ -1,4 +1,4 @@
-namespace BuildingBlock.Domain.Unit.Tests.Functional.Optionals;
+namespace BuildingBlock.Domain.Unit.Test.Functional.Optionals;
 
 using BuildingBlock.Functional.Errors;
 using BuildingBlock.Functional.Results;

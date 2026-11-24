@@ -1,4 +1,4 @@
-using BuildingBlock.Domain.Unit.Tests.Functional.Results;
+using BuildingBlock.Domain.Unit.Test.Functional.Results;
 
 namespace BuildingBlock.Functional.Unit.Test.Results;
 

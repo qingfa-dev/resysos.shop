@@ -1,5 +1,3 @@
-using BuildingBlock.Functional.Results;
-
 namespace BuildingBlock.Functional.Results;
 
 /// <summary>Consumes both possible states of a result.</summary>

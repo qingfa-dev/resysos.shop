@@ -1,4 +1,4 @@
-namespace BuildingBlock.Domain.Unit.Tests.Functional.Metadata;
+namespace BuildingBlock.Domain.Unit.Test.Functional.Metadata;
 
 using BuildingBlock.Functional.Metadata;
 

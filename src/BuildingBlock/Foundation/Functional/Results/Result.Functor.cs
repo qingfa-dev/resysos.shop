@@ -1,5 +1,3 @@
-using BuildingBlock.Functional.Results;
-
 namespace BuildingBlock.Functional.Results;
 
 /// <summary>Functor operations: transform a successful value.</summary>

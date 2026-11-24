@@ -1,5 +1,3 @@
-using BuildingBlock.Functional.Metadata;
-
 namespace BuildingBlock.Functional.Errors;
 
 /// <summary>

@@ -1,5 +1,3 @@
-using BuildingBlock.Functional.Errors;
-
 namespace BuildingBlock.Functional.Optionals;
 
 public static class MaybeConstant

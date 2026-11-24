@@ -1,6 +1,3 @@
-using BuildingBlock.Functional.Errors;
-using BuildingBlock.Functional.Results;
-
 namespace BuildingBlock.Functional.Results;
 
 /// <summary>Static construction contract for a concrete result type.</summary>

@@ -1,5 +1,3 @@
-using BuildingBlock.Functional.Errors;
-
 namespace BuildingBlock.Functional.Results;
 
 public static class ResultConstant

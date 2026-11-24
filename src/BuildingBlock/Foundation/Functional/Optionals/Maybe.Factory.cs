@@ -1,7 +1,4 @@
 namespace BuildingBlock.Functional.Optionals;
-
-using BuildingBlock.Functional.Errors;
-
 /// <summary>Static construction contract for a concrete Maybe type.</summary>
 public interface IMaybeFactory<out TSelf, T>
     where TSelf : IMaybe<T>

@@ -1,6 +1,3 @@
-using BuildingBlock.Functional.Errors;
-using BuildingBlock.Functional.Results;
-
 namespace BuildingBlock.Functional.Results;
 
 /// <summary>LINQ query-syntax support for Result.</summary>

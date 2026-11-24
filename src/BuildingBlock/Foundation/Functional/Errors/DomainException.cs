@@ -1,5 +1,3 @@
-using BuildingBlock.Functional.Errors;
-
 namespace BuildingBlock.Functional.Errors;
 
 public sealed class DomainException : Exception

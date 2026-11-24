@@ -1,5 +1,3 @@
-using BuildingBlock.Functional.Errors;
-
 namespace BuildingBlock.Functional.Results;
 
 /// <summary>Non-generic success/failure state of a computation.</summary>

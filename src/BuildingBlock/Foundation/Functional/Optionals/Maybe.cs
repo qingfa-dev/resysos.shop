@@ -1,7 +1,3 @@
-using BuildingBlock.Functional.Errors;
-using BuildingBlock.Functional.Results;
-using BuildingBlock.Functional.Optionals;
-
 namespace BuildingBlock.Functional.Optionals;
 
 /// <summary>

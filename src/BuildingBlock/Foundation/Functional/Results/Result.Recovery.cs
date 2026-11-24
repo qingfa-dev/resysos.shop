@@ -1,6 +1,3 @@
-using BuildingBlock.Functional.Errors;
-using BuildingBlock.Functional.Results;
-
 namespace BuildingBlock.Functional.Results;
 
 /// <summary>Recovers a failed result either with a value or another result.</summary>
