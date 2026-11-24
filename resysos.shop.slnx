@@ -10,6 +10,6 @@
   </Folder>
   <Folder Name="/tests/BuildingBlock/" />
   <Folder Name="/tests/BuildingBlock/Foundation/">
-    <Project Path="tests/BuildingBlock/Foundation/Functional.Unit.Test/BuildingBlock.Functional.Unit.Test.csproj" />
+    <Project Path="tests/BuildingBlock/Foundation/Functional/BuildingBlock.Functional.Unit.Test.csproj" />
   </Folder>
 </Solution>
