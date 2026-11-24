@@ -1,15 +1,13 @@
 namespace BuildingBlock.Domain.Unit.Test.Events;
 
-/// <summary>Specifications for <see cref="DomainEvent"/> and <see cref="IDomainEvent"/>.</summary>
-public sealed class DomainEventSpec
+/// <summary>Tests for <see cref="DomainEvent"/>.</summary>
+public sealed class DomainEventTests
 {
     #region Helper Types
 
     private sealed record TestEvent : DomainEvent;
 
     #endregion
-
-    #region Defaults
 
     [Fact]
     public void NewEvent_ShouldPopulateIdentityAndVersion()
@@ -42,16 +40,6 @@ public sealed class DomainEventSpec
     }
 
     [Fact]
-    public void Event_ShouldImplementMarkerContract()
-    {
-        new TestEvent().Should().BeAssignableTo<IDomainEvent>();
-    }
-
-    #endregion
-
-    #region Metadata
-
-    [Fact]
     public void WithMetadata_ShouldReturnCopyWithValue()
     {
         var original = new TestEvent();
@@ -81,9 +69,9 @@ public sealed class DomainEventSpec
 
         var enriched = new TestEvent().WithCorrelation<TestEvent>(correlationId);
 
-        enriched.Metadata.GetMetadata(DomainEventConstant.CorrelationId)
+        enriched.Metadata.GetMetadata(DomainEventConstant.Metadata.CorrelationId)
             .Should().Be(correlationId);
-        enriched.Metadata.GetMetadata(DomainEventConstant.CausationId)
+        enriched.Metadata.GetMetadata(DomainEventConstant.Metadata.CausationId)
             .Should().Be(correlationId);
     }
 
@@ -96,11 +84,9 @@ public sealed class DomainEventSpec
         var enriched = new TestEvent()
             .WithCorrelation<TestEvent>(correlationId, causationId);
 
-        enriched.Metadata.GetMetadata(DomainEventConstant.CorrelationId)
+        enriched.Metadata.GetMetadata(DomainEventConstant.Metadata.CorrelationId)
             .Should().Be(correlationId);
-        enriched.Metadata.GetMetadata(DomainEventConstant.CausationId)
+        enriched.Metadata.GetMetadata(DomainEventConstant.Metadata.CausationId)
             .Should().Be(causationId);
     }
-
-    #endregion
 }

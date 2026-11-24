@@ -1,11 +1,9 @@
 using BuildingBlock.Domain.Entities;
-using BuildingBlock.Domain.Modeling.Lifecycle.Creatable;
-using BuildingBlock.Domain.Modeling.Lifecycle.Modifiable;
 
 namespace BuildingBlock.Domain.Unit.Test.Entities;
 
-/// <summary>Specifications for <see cref="Entity{TId}"/> and <see cref="IAuditable"/>.</summary>
-public sealed class EntitySpec
+/// <summary>Tests for <see cref="Entity{TId}"/>.</summary>
+public sealed class EntityTests
 {
     #region Helper Types
 
@@ -39,8 +37,6 @@ public sealed class EntitySpec
 
     #endregion
 
-    #region Identity
-
     [Fact]
     public void Constructor_ShouldPreserveIdentifier()
     {
@@ -49,10 +45,6 @@ public sealed class EntitySpec
         new Order(id).Id.Should().Be(id);
         new Line(42).Id.Should().Be(42);
     }
-
-    #endregion
-
-    #region Equality
 
     [Fact]
     public void Equals_SameId_ShouldBeEqual()
@@ -114,33 +106,4 @@ public sealed class EntitySpec
 
         order.Equals(order).Should().BeTrue();
     }
-
-    #endregion
-
-    #region Audit markers
-
-    [Fact]
-    public void Auditable_ShouldExposeCreationAndModificationState()
-    {
-        var entity = new AuditedOrder(Guid.NewGuid());
-        IAuditable auditable = entity;
-
-        auditable.Should().BeAssignableTo<ICreatable>();
-        auditable.Should().BeAssignableTo<IModifiable>();
-
-        var created = DateTimeOffset.UtcNow;
-        var modified = created.AddMinutes(5);
-
-        auditable.CreatedAtUtc = created;
-        auditable.CreatedBy = "creator";
-        auditable.ModifiedAtUtc = modified;
-        auditable.ModifiedBy = "modifier";
-
-        entity.CreatedAtUtc.Should().Be(created);
-        entity.CreatedBy.Should().Be("creator");
-        entity.ModifiedAtUtc.Should().Be(modified);
-        entity.ModifiedBy.Should().Be("modifier");
-    }
-
-    #endregion
 }

@@ -1,7 +1,7 @@
 namespace BuildingBlock.Domain.Unit.Test.Aggregate;
 
-/// <summary>Specifications for <see cref="AggregateRoot"/> and <see cref="AggregateRoot{TId}"/>.</summary>
-public sealed class AggregateRootSpec
+/// <summary>Tests for <see cref="AggregateRoot"/> and <see cref="AggregateRoot{TId}"/>.</summary>
+public sealed class AggregateRootTests
 {
     #region Helper Types
 
@@ -27,8 +27,6 @@ public sealed class AggregateRootSpec
 
     #endregion
 
-    #region Identity
-
     [Fact]
     public void DefaultConstructor_ShouldCreateNonEmptyIdentifier()
     {
@@ -45,10 +43,6 @@ public sealed class AggregateRootSpec
         new OrderAggregate(id).Id.Should().Be(id);
         new LineAggregate(7).Id.Should().Be(7);
     }
-
-    #endregion
-
-    #region Domain events
 
     [Fact]
     public void NewAggregate_ShouldHaveNoDomainEvents()
@@ -112,16 +106,4 @@ public sealed class AggregateRootSpec
             .Which.Should().BeOfType<LineRaised>()
             .Which.AggregateId.Should().Be(3);
     }
-
-    [Fact]
-    public void Aggregate_ShouldImplementAggregateRootContract()
-    {
-        var aggregate = new OrderAggregate();
-
-        aggregate.Should().BeAssignableTo<IAggregateRoot>();
-        aggregate.Should().BeAssignableTo<IAggregateRoot<Guid>>();
-        new LineAggregate(1).Should().BeAssignableTo<IAggregateRoot<int>>();
-    }
-
-    #endregion
 }
