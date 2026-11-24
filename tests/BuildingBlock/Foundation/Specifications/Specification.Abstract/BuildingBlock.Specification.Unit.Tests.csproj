@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../../../../src/BuildingBlock/Foundation/Specifications/BuildingBlock.Specification.Abstract/BuildingBlock.Specification.Abstract.csproj" />
+    <ProjectReference Include="../../../../../src/BuildingBlock/Foundation/Specifications/Specification.Abstract/BuildingBlock.Specification.Abstract.csproj" />
   </ItemGroup>
 
 

@@ -19,5 +19,6 @@
   </Folder>
   <Folder Name="/tests/BuildingBlock/Foundation/Specifications/">
     <Project Path="tests/BuildingBlock/Foundation/Specifications/Specification.Abstract/BuildingBlock.Specification.Unit.Tests.csproj" />
+    <Project Path="tests/BuildingBlock/Foundation/Specifications/Specifications.Providers.Unit.Tests/BuildingBlock.Specifications.Providers.Unit.Tests.csproj" />
   </Folder>
 </Solution>
