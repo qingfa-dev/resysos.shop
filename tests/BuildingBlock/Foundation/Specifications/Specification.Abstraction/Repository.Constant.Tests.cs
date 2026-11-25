@@ -1,4 +1,6 @@
-namespace BuildingBlock.Specification.Unit.Tests;
+using BuildingBlock.Specification.Abstraction.Unit.Tests;
+
+namespace BuildingBlock.Specification.Abstraction.Unit.Tests;
 
 /// <summary>Tests for <see cref="RepositoryConstant"/>.</summary>
 public sealed class RepositoryConstantTests

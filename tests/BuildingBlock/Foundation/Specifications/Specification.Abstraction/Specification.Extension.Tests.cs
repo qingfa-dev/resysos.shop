@@ -1,4 +1,4 @@
-namespace BuildingBlock.Specification.Unit.Tests;
+namespace BuildingBlock.Specification.Abstraction.Unit.Tests;
 
 /// <summary>Tests for the Result-returning <see cref="SpecificationExtensions"/> factories.</summary>
 public sealed class SpecificationExtensionTests

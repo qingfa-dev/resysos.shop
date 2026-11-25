@@ -1,4 +1,4 @@
-namespace BuildingBlock.Specification.Unit.Tests;
+namespace BuildingBlock.Specification.Abstraction.Unit.Tests;
 
 /// <summary>Tests for the railway-only <see cref="IRepository{TAggregate, TId}"/> contract.</summary>
 public sealed class RepositoryInterfaceTests

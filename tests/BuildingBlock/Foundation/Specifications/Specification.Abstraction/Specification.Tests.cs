@@ -1,4 +1,4 @@
-namespace BuildingBlock.Specification.Unit.Tests;
+namespace BuildingBlock.Specification.Abstraction.Unit.Tests;
 
 /// <summary>Tests for <see cref="Specification{T}"/>.</summary>
 public sealed class SpecificationTests

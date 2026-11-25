@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
 
-namespace BuildingBlock.Specification.Unit.Tests;
+namespace BuildingBlock.Specification.Abstraction.Unit.Tests;
 
 /// <summary>Tests for <see cref="SpecificationQueryExtensions"/>.</summary>
 public sealed class SpecificationQueryExtensionTests
