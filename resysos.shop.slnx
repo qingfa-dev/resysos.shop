@@ -10,6 +10,7 @@
     <Project Path="src/BuildingBlock/Foundation/Specifications/Specification.Abstraction/BuildingBlock.Specification.Abstraction.csproj" />
     <Project Path="src/BuildingBlock/Foundation/Specifications/Specifications.EfCore/BuildingBlock.Specifications.EfCore.csproj" />
     <Project Path="src/BuildingBlock/Foundation/Specifications/Specifications.InMemory/BuildingBlock.Specifications.InMemory.csproj" />
+    <Project Path="src/BuildingBlock/Foundation/Specifications/Specifications.Query/BuildingBlock.Specifications.Query.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/BuildingBlock/Foundation/Domain/BuildingBlock.Domain.Unit.Test.csproj" />
