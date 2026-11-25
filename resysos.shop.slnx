@@ -7,7 +7,7 @@
     <Project Path="src/BuildingBlock/Foundation/Functional/BuildingBlock.Functional.csproj" />
   </Folder>
   <Folder Name="/src/BuildingBlock/Foundation/Specifications/">
-    <Project Path="src/BuildingBlock/Foundation/Specifications/Specification.Abstract/BuildingBlock.Specification.Abstract.csproj" />
+    <Project Path="src/BuildingBlock/Foundation/Specifications/Specification.Abstraction/BuildingBlock.Specification.Abstraction.csproj" />
     <Project Path="src/BuildingBlock/Foundation/Specifications/Specifications.EfCore/BuildingBlock.Specifications.EfCore.csproj" />
     <Project Path="src/BuildingBlock/Foundation/Specifications/Specifications.InMemory/BuildingBlock.Specifications.InMemory.csproj" />
   </Folder>
@@ -20,7 +20,7 @@
     <Project Path="tests/BuildingBlock/Foundation/Functional/BuildingBlock.Functional.Unit.Test.csproj" />
   </Folder>
   <Folder Name="/tests/BuildingBlock/Foundation/Specifications/">
-    <Project Path="tests/BuildingBlock/Foundation/Specifications/Specification.Abstract/BuildingBlock.Specification.Unit.Tests.csproj" />
+    <Project Path="tests/BuildingBlock/Foundation/Specifications/Specification.Abstraction/BuildingBlock.Specification.Abstraction.Unit.Tests.csproj" />
     <Project Path="tests/BuildingBlock/Foundation/Specifications/Specifications.Providers.Unit.Tests/BuildingBlock.Specifications.Providers.Unit.Tests.csproj" />
   </Folder>
 </Solution>

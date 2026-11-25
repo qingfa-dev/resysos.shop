@@ -61,7 +61,7 @@
       "buildingblock.functional": {
         "type": "Project"
       },
-      "buildingblock.specification.abstract": {
+      "buildingblock.specification.abstraction": {
         "type": "Project",
         "dependencies": {
           "BuildingBlock.Domain": "[1.0.0, )"

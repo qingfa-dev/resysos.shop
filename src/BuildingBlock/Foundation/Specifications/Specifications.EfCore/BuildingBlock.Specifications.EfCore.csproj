@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../../Domain/BuildingBlock.Domain.csproj" />
-    <ProjectReference Include="../Specification.Abstract/BuildingBlock.Specification.Abstract.csproj" />
+    <ProjectReference Include="../Specification.Abstraction/BuildingBlock.Specification.Abstraction.csproj" />
   </ItemGroup>
 
 </Project>

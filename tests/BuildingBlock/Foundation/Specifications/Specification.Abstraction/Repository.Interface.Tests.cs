@@ -1,3 +1,5 @@
+using BuildingBlock.Specification.Abstract;
+
 namespace BuildingBlock.Specification.Unit.Tests;
 
 /// <summary>Tests for the railway-only <see cref="IRepository{TAggregate, TId}"/> contract.</summary>

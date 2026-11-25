@@ -237,7 +237,7 @@
       "buildingblock.functional": {
         "type": "Project"
       },
-      "buildingblock.specification.abstract": {
+      "buildingblock.specification.abstraction": {
         "type": "Project",
         "dependencies": {
           "BuildingBlock.Domain": "[1.0.0, )"
@@ -247,7 +247,7 @@
         "type": "Project",
         "dependencies": {
           "BuildingBlock.Domain": "[1.0.0, )",
-          "BuildingBlock.Specification.Abstract": "[1.0.0, )",
+          "BuildingBlock.Specification.Abstraction": "[1.0.0, )",
           "Microsoft.EntityFrameworkCore": "[11.0.0, )",
           "Microsoft.EntityFrameworkCore.Relational": "[11.0.0, )",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "[11.0.0, )"
@@ -256,7 +256,7 @@
       "buildingblock.specifications.inmemory": {
         "type": "Project",
         "dependencies": {
-          "BuildingBlock.Specification.Abstract": "[1.0.0, )"
+          "BuildingBlock.Specification.Abstraction": "[1.0.0, )"
         }
       },
       "Microsoft.EntityFrameworkCore": {
