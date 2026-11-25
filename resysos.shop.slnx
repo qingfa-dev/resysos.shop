@@ -7,6 +7,7 @@
     <Project Path="src/BuildingBlock/Foundation/Functional/BuildingBlock.Functional.csproj" />
     <Project Path="src/BuildingBlock/Foundation/Persistence/BuildingBlock.Persistence.csproj" />
     <Project Path="src/BuildingBlock/Foundation/Persistence.InMemory/BuildingBlock.Persistence.InMemory.csproj" />
+    <Project Path="src/BuildingBlock/Foundation/Querying/BuildingBlock.Querying.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/BuildingBlock/Foundation/Domain/BuildingBlock.Domain.Unit.Test.csproj" />
@@ -16,5 +17,6 @@
     <Project Path="tests/BuildingBlock/Foundation/Contracts/BuildingBlock.Contracts.Unit.Tests.csproj" />
     <Project Path="tests/BuildingBlock/Foundation/Functional/BuildingBlock.Functional.Unit.Test.csproj" />
     <Project Path="tests/BuildingBlock/Foundation/Persistence/BuildingBlock.Persistence.Unit.Tests.csproj" />
+    <Project Path="tests/BuildingBlock/Foundation/Querying/BuildingBlock.Querying.Unit.Tests.csproj" />
   </Folder>
 </Solution>
