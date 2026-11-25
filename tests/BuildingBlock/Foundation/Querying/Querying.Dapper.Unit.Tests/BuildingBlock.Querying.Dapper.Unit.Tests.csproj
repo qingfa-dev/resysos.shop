@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../../../src/BuildingBlock/Foundation/Querying.Dapper/BuildingBlock.Querying.Dapper.csproj" />
-    <ProjectReference Include="../../../../src/BuildingBlock/Foundation/Querying/BuildingBlock.Querying.csproj" />
+    <ProjectReference Include="../../../../../src/BuildingBlock/Foundation/Querying/Querying.Core/BuildingBlock.Querying.Core.csproj" />
+    <ProjectReference Include="../../../../../src/BuildingBlock/Foundation/Querying/Querying.Dapper/BuildingBlock.Querying.Dapper.csproj" />
   </ItemGroup>
 
   <ItemGroup>
