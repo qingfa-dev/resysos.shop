@@ -6,12 +6,6 @@
     <Project Path="src/BuildingBlock/Foundation/Domain/BuildingBlock.Domain.csproj" />
     <Project Path="src/BuildingBlock/Foundation/Functional/BuildingBlock.Functional.csproj" />
   </Folder>
-  <Folder Name="/src/BuildingBlock/Foundation/Specifications/">
-    <Project Path="src/BuildingBlock/Foundation/Specifications/Specification.Abstraction/BuildingBlock.Specification.Abstraction.csproj" />
-    <Project Path="src/BuildingBlock/Foundation/Specifications/Specifications.EfCore/BuildingBlock.Specifications.EfCore.csproj" />
-    <Project Path="src/BuildingBlock/Foundation/Specifications/Specifications.InMemory/BuildingBlock.Specifications.InMemory.csproj" />
-    <Project Path="src/BuildingBlock/Foundation/Specifications/Specifications.Query/BuildingBlock.Specifications.Query.csproj" />
-  </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/BuildingBlock/Foundation/Domain/BuildingBlock.Domain.Unit.Test.csproj" />
   </Folder>
@@ -19,10 +13,5 @@
   <Folder Name="/tests/BuildingBlock/Foundation/">
     <Project Path="tests/BuildingBlock/Foundation/Contracts/BuildingBlock.Contracts.Unit.Tests.csproj" />
     <Project Path="tests/BuildingBlock/Foundation/Functional/BuildingBlock.Functional.Unit.Test.csproj" />
-  </Folder>
-  <Folder Name="/tests/BuildingBlock/Foundation/Specifications/">
-    <Project Path="tests/BuildingBlock/Foundation/Specifications/Specification.Abstraction/BuildingBlock.Specification.Abstraction.Unit.Tests.csproj" />
-    <Project Path="tests/BuildingBlock/Foundation/Specifications/Specifications.Providers.Unit.Tests/BuildingBlock.Specifications.Providers.Unit.Tests.csproj" />
-    <Project Path="tests/BuildingBlock/Foundation/Specifications/Specifications.Query.Unit.Tests/BuildingBlock.Specifications.Query.Unit.Tests.csproj" />
   </Folder>
 </Solution>
