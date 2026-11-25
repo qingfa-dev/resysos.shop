@@ -3,9 +3,9 @@ namespace BuildingBlock.Specification.Unit.Tests;
 /// <summary>Tests for the Result-returning And/Or/Not composite factories.</summary>
 public sealed class SpecificationCompositeTests
 {
-    [Fact]
     #region Composition
 
+    [Fact]
     public void And_ShouldRequireBothSpecifications()
     {
         var result = new AdultSpecification().And(new NamedAdaSpecification());
@@ -57,10 +57,10 @@ public sealed class SpecificationCompositeTests
         not.Value.IsSatisfiedBy(People.Child).Should().BeTrue();
     }
 
-    [Fact]
     #endregion
     #region Invalid Input
 
+    [Fact]
     public void Composition_NullOperand_ShouldReturnErrorWithoutThrowing()
     {
         var left = new AdultSpecification();

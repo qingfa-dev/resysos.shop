@@ -3,9 +3,9 @@ namespace BuildingBlock.Specification.Unit.Tests;
 /// <summary>Tests for the Result-returning <see cref="SpecificationExtensions"/> factories.</summary>
 public sealed class SpecificationExtensionTests
 {
-    [Fact]
     #region Evaluation
 
+    [Fact]
     public void Compile_ShouldReturnReusableDelegate()
     {
         var specification = new AdultSpecification();
@@ -17,10 +17,10 @@ public sealed class SpecificationExtensionTests
         result.Value(People.Child).Should().BeFalse();
     }
 
-    [Fact]
     #endregion
     #region Factories
 
+    [Fact]
     public void Create_ShouldBuildAdHocSpecification()
     {
         var result = SpecificationExtensions.Create<Person>(person => person.Age < 18);
@@ -57,10 +57,10 @@ public sealed class SpecificationExtensionTests
         result.Value.IsSatisfiedBy(People.Child).Should().BeFalse();
     }
 
-    [Fact]
     #endregion
     #region Invalid Input
 
+    [Fact]
     public void ByIds_EmptyIds_ShouldReturnError()
     {
         var result = SpecificationExtensions.ByIds<Person, Guid>(Array.Empty<Guid>());

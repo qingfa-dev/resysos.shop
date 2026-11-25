@@ -1,11 +1,13 @@
+using System.Linq.Expressions;
+
 namespace BuildingBlock.Specification.Unit.Tests;
 
 /// <summary>Tests for <see cref="SpecificationGuard"/>.</summary>
 public sealed class SpecificationGuardTests
 {
-    [Fact]
     #region Specification
 
+    [Fact]
     public void EnsureConcrete_WithSpecificationBase_ShouldSucceed()
     {
         ISpecification<Person> specification = new AdultSpecification();
@@ -44,10 +46,11 @@ public sealed class SpecificationGuardTests
         act.Should().NotThrow();
     }
 
-    [Fact]
     #endregion
+
     #region Presence
 
+    [Fact]
     public void NotNull_WithSpecification_ShouldSucceed()
     {
         ISpecification<Person> specification = new AdultSpecification();
@@ -73,13 +76,72 @@ public sealed class SpecificationGuardTests
             .Which.Should().Be(SpecificationConstant.Constraints.Specification.Required.Error);
     }
 
+    #endregion
+
+    #region Factory Inputs
+
+    [Fact]
+    public void CriteriaRequired_ShouldGuardAgainstNull()
+    {
+        Expression<Func<Person, bool>>? criteria = null;
+
+        var result = SpecificationGuard.CriteriaRequired(criteria);
+
+        result.Errors.Should().ContainSingle()
+            .Which.Should().Be(SpecificationConstant.Constraints.Criteria.Required.Error);
+    }
+
+    [Fact]
+    public void CriteriaRequired_ShouldPassValidExpression()
+    {
+        Expression<Func<Person, bool>> criteria = person => person.Age > 0;
+
+        SpecificationGuard.CriteriaRequired(criteria).Value.Should().BeSameAs(criteria);
+    }
+
+    [Fact]
+    public void IdRequired_ShouldGuardAgainstDefaultId()
+    {
+        SpecificationGuard.IdRequired(Guid.Empty).Errors.Should().ContainSingle()
+            .Which.Should().Be(SpecificationConstant.Constraints.Id.Required.Error);
+    }
+
+    [Fact]
+    public void IdsRequired_ShouldGuardAgainstNullOrEmpty()
+    {
+        SpecificationGuard.IdsRequired<Guid>(null!).Errors.Should().ContainSingle()
+            .Which.Should().Be(SpecificationConstant.Constraints.Ids.Required.Error);
+        SpecificationGuard.IdsRequired(Array.Empty<Guid>()).Errors.Should().ContainSingle()
+            .Which.Should().Be(SpecificationConstant.Constraints.Ids.Required.Error);
+    }
+
+    [Fact]
+    public void KeySelectorRequired_ShouldGuardAgainstNull()
+    {
+        Expression<Func<Person, int>>? keySelector = null;
+
+        var result = SpecificationGuard.KeySelectorRequired(keySelector);
+
+        result.Errors.Should().ContainSingle()
+            .Which.Should().Be(SpecificationConstant.Constraints.Ordering.KeySelector.Required.Error);
+    }
+
+    [Fact]
+    public void KeySelectorRequired_ShouldPassValidExpression()
+    {
+        Expression<Func<Person, int>> keySelector = person => person.Age;
+
+        SpecificationGuard.KeySelectorRequired(keySelector).Value.Should().BeSameAs(keySelector);
+    }
+
+    #endregion
+
+    #region Paging
+
     [Theory]
     [InlineData(1)]
     [InlineData(2)]
     [InlineData(100)]
-    #endregion
-    #region Paging
-
     public void ValidPage_InRange_ShouldSucceed(int page)
     {
         SpecificationGuard.ValidPage(page).Value.Should().Be(page);
@@ -136,42 +198,5 @@ public sealed class SpecificationGuardTests
         act.Should().NotThrow().Which.IsFailure.Should().BeTrue();
     }
 
-    [Fact]
-    #endregion
-    #region Factory Inputs
-
-    public void CriteriaRequired_ShouldGuardAgainstNull()
-    {
-        System.Linq.Expressions.Expression<Func<Person, bool>>? criteria = null;
-
-        var result = SpecificationGuard.CriteriaRequired(criteria);
-
-        result.Errors.Should().ContainSingle()
-            .Which.Should().Be(SpecificationConstant.Constraints.Criteria.Required.Error);
-    }
-
-    [Fact]
-    public void CriteriaRequired_ShouldPassValidExpression()
-    {
-        System.Linq.Expressions.Expression<Func<Person, bool>> criteria = person => person.Age > 0;
-
-        SpecificationGuard.CriteriaRequired(criteria).Value.Should().BeSameAs(criteria);
-    }
-
-    [Fact]
-    public void IdRequired_ShouldGuardAgainstDefaultId()
-    {
-        SpecificationGuard.IdRequired(Guid.Empty).Errors.Should().ContainSingle()
-            .Which.Should().Be(SpecificationConstant.Constraints.Id.Required.Error);
-    }
-
-    [Fact]
-    public void IdsRequired_ShouldGuardAgainstNullOrEmpty()
-    {
-        SpecificationGuard.IdsRequired<Guid>(null!).Errors.Should().ContainSingle()
-            .Which.Should().Be(SpecificationConstant.Constraints.Ids.Required.Error);
-        SpecificationGuard.IdsRequired(Array.Empty<Guid>()).Errors.Should().ContainSingle()
-            .Which.Should().Be(SpecificationConstant.Constraints.Ids.Required.Error);
-    }
     #endregion
 }

@@ -41,22 +41,24 @@ public static class SpecificationQueryExtensions
         => SpecificationGuard
             .NotNull(specification, SpecificationConstant.Constraints.Specification.Required.Error)
             .Bind(spec => SpecificationGuard
-                .EnsureConcrete(spec, SpecificationConstant.Constraints.Ordering.NotSupported.Error)
-                .Map(concrete =>
-                {
-                    var param = Expression.Parameter(typeof(T), "x");
-                    var body = Expression.Invoke(keySelector, param);
-                    var lambda = Expression.Lambda<Func<T, object>>(
-                        Expression.Convert(body, typeof(object)),
-                        param);
+                .KeySelectorRequired(keySelector)
+                .Bind(selector => SpecificationGuard
+                    .EnsureConcrete(spec, SpecificationConstant.Constraints.Ordering.NotSupported.Error)
+                    .Map(concrete =>
+                    {
+                        var param = Expression.Parameter(typeof(T), "x");
+                        var body = Expression.Invoke(selector, param);
+                        var lambda = Expression.Lambda<Func<T, object>>(
+                            Expression.Convert(body, typeof(object)),
+                            param);
 
-                    if (descending)
-                        concrete.AddOrderByDescending(lambda);
-                    else
-                        concrete.AddOrderBy(lambda);
+                        if (descending)
+                            concrete.AddOrderByDescending(lambda);
+                        else
+                            concrete.AddOrderBy(lambda);
 
-                    return (ISpecification<T>)concrete;
-                }));
+                        return (ISpecification<T>)concrete;
+                    })));
 
     #endregion
     #region Tracking

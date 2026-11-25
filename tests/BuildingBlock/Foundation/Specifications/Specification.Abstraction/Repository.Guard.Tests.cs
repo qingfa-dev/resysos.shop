@@ -3,9 +3,9 @@ namespace BuildingBlock.Specification.Unit.Tests;
 /// <summary>Tests for <see cref="RepositoryGuard"/>.</summary>
 public sealed class RepositoryGuardTests
 {
-    [Fact]
     #region Lookups
 
+    [Fact]
     public void EnsureFound_WithAggregate_ShouldSucceed()
     {
         var aggregate = People.Adult;
@@ -38,10 +38,10 @@ public sealed class RepositoryGuardTests
         act.Should().NotThrow();
     }
 
-    [Fact]
     #endregion
     #region Validation
 
+    [Fact]
     public void NotNull_WithAggregate_ShouldSucceed()
     {
         var aggregate = People.Adult;
@@ -71,10 +71,10 @@ public sealed class RepositoryGuardTests
             .Which.Should().Be(RepositoryConstant.Constraints.Id.Required.Error);
     }
 
-    [Fact]
     #endregion
     #region Paging
 
+    [Fact]
     public void ValidPaging_ShouldComputeSkipAndTake()
     {
         var result = RepositoryGuard.ValidPaging(page: 3, pageSize: 20);

@@ -3,12 +3,12 @@ namespace BuildingBlock.Specification.Unit.Tests;
 /// <summary>Tests for <see cref="SpecificationConstant"/>.</summary>
 public sealed class SpecificationConstantTests
 {
+    #region Errors
+
     [Theory]
     [InlineData(0, "specification.paging.not_supported")]
     [InlineData(1, "specification.ordering.not_supported")]
     [InlineData(2, "specification.tracking.not_supported")]
-    #region Errors
-
     public void ShapingErrors_ShouldHaveDocumentedIdentity(int index, string code)
     {
         Error[] errors =
@@ -23,10 +23,11 @@ public sealed class SpecificationConstantTests
         errors[index].Message.Should().NotBeNullOrWhiteSpace();
     }
 
-    [Fact]
     #endregion
+
     #region Messages
 
+    [Fact]
     public void Messages_ShouldMatchDocumentedText()
     {
         SpecificationConstant.Constraints.Paging.NotSupported.Error.Message.Should().Be(
@@ -37,10 +38,11 @@ public sealed class SpecificationConstantTests
             "Cannot disable tracking on a specification that is not a Specification implementation.");
     }
 
-    [Fact]
     #endregion
+
     #region Constraints
 
+    [Fact]
     public void PagingConstraints_ShouldMatchDocumentedValues()
     {
         SpecificationConstant.Constraints.Paging.Page.Min.Value.Should().Be(1);
@@ -68,9 +70,20 @@ public sealed class SpecificationConstantTests
     }
 
     [Fact]
+    public void OrderingKeySelectorError_ShouldMatchDocumentedIdentity()
+    {
+        var error = SpecificationConstant.Constraints.Ordering.KeySelector.Required.Error;
+
+        error.Code.Should().Be("specification.ordering.key_selector.required");
+        error.Type.Should().Be(ErrorType.Validation);
+        error.Message.Should().Be("An ordering key selector is required.");
+    }
+
     #endregion
+
     #region Required Errors
 
+    [Fact]
     public void RequiredSpecificationError_ShouldMatchDocumentedIdentity()
     {
         var required = SpecificationConstant.Constraints.Specification.Required.Error;
@@ -80,10 +93,11 @@ public sealed class SpecificationConstantTests
         required.Message.Should().Be("A specification instance is required.");
     }
 
-    [Fact]
     #endregion
+
     #region Defaults
 
+    [Fact]
     public void Defaults_ShouldMatchDocumentedValues()
     {
         SpecificationConstant.Defaults.Page.Should().Be(1);
@@ -92,10 +106,11 @@ public sealed class SpecificationConstantTests
         SpecificationConstant.Defaults.TrackingEnabled.Should().BeTrue();
     }
 
-    [Fact]
     #endregion
+
     #region Factory Inputs
 
+    [Fact]
     public void FactoryConstraintErrors_ShouldMatchDocumentedIdentity()
     {
         Error[] errors =
@@ -110,5 +125,6 @@ public sealed class SpecificationConstantTests
         errors[2].Code.Should().Be("specification.ids.required");
         errors.Should().OnlyContain(error => error.Type == ErrorType.Validation);
     }
+
     #endregion
 }

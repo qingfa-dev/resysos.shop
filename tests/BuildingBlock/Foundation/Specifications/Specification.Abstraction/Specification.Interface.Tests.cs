@@ -3,9 +3,9 @@ namespace BuildingBlock.Specification.Unit.Tests;
 /// <summary>Tests for <see cref="ISpecification{T}"/> implementations.</summary>
 public sealed class SpecificationInterfaceTests
 {
-    [Fact]
     #region Contract
 
+    [Fact]
     public void SpecificationBase_ShouldExposeTheFullContract()
     {
         ISpecification<Person> specification = new AdultSpecification();

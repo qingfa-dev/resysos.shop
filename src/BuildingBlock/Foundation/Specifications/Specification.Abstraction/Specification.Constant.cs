@@ -115,6 +115,18 @@ public static partial class SpecificationConstant
                     code: "specification.ordering.not_supported",
                     message: "Cannot apply ordering to a specification that is not a Specification implementation.");
             }
+
+            /// <summary>Constraints and error definitions for the ordering key selector.</summary>
+            public static class KeySelector
+            {
+                /// <summary>Error when the key selector is missing.</summary>
+                public static class Required
+                {
+                    public static readonly Error Error = Error.Validation(
+                        code: "specification.ordering.key_selector.required",
+                        message: "An ordering key selector is required.");
+                }
+            }
         }
 
         /// <summary>Constraints and error definitions for change tracking.</summary>

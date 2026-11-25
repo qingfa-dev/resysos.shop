@@ -3,9 +3,9 @@ namespace BuildingBlock.Specification.Unit.Tests;
 /// <summary>Tests for the railway-only <see cref="IRepository{TAggregate, TId}"/> contract.</summary>
 public sealed class RepositoryInterfaceTests
 {
-    [Fact]
     #region Lookups
 
+    [Fact]
     public async Task FindAsync_ExistingAggregate_ShouldSucceed()
     {
         IRepository<Person, Guid> repository = new FakeRepository();
@@ -31,10 +31,10 @@ public sealed class RepositoryInterfaceTests
         error.Message.Should().Be($"{nameof(Person)} with id '{id}' was not found.");
     }
 
-    [Fact]
     #endregion
     #region Contracts
 
+    [Fact]
     public void GuidRepository_ShouldBeTheGenericRepositoryContract()
     {
         IRepository<Person> repository = new FakeRepository();
@@ -42,10 +42,10 @@ public sealed class RepositoryInterfaceTests
         repository.Should().BeAssignableTo<IRepository<Person, Guid>>();
     }
 
-    [Fact]
     #endregion
     #region Writes
 
+    [Fact]
     public async Task AddAsync_NullAggregate_ShouldReturnErrorWithoutThrowing()
     {
         var repository = new FakeRepository();
@@ -56,10 +56,10 @@ public sealed class RepositoryInterfaceTests
             .Which.Should().Be(RepositoryConstant.Constraints.Aggregate.Required.Error);
     }
 
-    [Fact]
     #endregion
     #region Queries
 
+    [Fact]
     public async Task QueryOperations_ShouldReturnResults()
     {
         IRepository<Person> repository = new FakeRepository();

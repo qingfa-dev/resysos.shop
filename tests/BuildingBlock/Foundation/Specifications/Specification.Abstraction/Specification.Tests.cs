@@ -3,9 +3,9 @@ namespace BuildingBlock.Specification.Unit.Tests;
 /// <summary>Tests for <see cref="Specification{T}"/>.</summary>
 public sealed class SpecificationTests
 {
-    [Fact]
     #region State
 
+    [Fact]
     public void Criteria_ShouldBeExposedAsExpression()
     {
         var specification = new AdultSpecification();
@@ -37,10 +37,10 @@ public sealed class SpecificationTests
         specification.IsTrackingEnabled.Should().BeTrue();
     }
 
-    [Fact]
     #endregion
     #region Mutators
 
+    [Fact]
     public void AddInclude_ShouldRecordExpressionAndString()
     {
         var specification = new ShapedSpecification();
@@ -87,10 +87,10 @@ public sealed class SpecificationTests
         specification.IsTrackingEnabled.Should().BeFalse();
     }
 
-    [Fact]
     #endregion
     #region Construction
 
+    [Fact]
     public void BaseConstructor_ShouldBeProtected()
     {
         var type = typeof(Specification<Person>);
@@ -104,14 +104,14 @@ public sealed class SpecificationTests
             .Should().NotBeNull();
     }
 
+    #endregion
+    #region Factory API
+
     [Theory]
     [InlineData("AndSpecification`1")]
     [InlineData("OrSpecification`1")]
     [InlineData("NotSpecification`1")]
     [InlineData("AdHocSpecification`1")]
-    #endregion
-    #region Factory API
-
     public void InternalSpecificationTypes_ShouldNotExposeConstructors(string typeName)
     {
         var type = typeof(Specification<Person>).Assembly.GetTypes()

@@ -63,6 +63,16 @@ public static class SpecificationGuard
             : Result.Success(set);
     }
 
+    /// <summary>
+    /// Checks that an ordering key selector was supplied.
+    /// </summary>
+    public static Result<Expression<Func<T, TKey>>> KeySelectorRequired<T, TKey>(
+        Expression<Func<T, TKey>>? keySelector)
+        => keySelector is null
+            ? Result.Failure<Expression<Func<T, TKey>>>(
+                SpecificationConstant.Constraints.Ordering.KeySelector.Required.Error)
+            : Result.Success(keySelector);
+
     #endregion
     #region Paging
 

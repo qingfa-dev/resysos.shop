@@ -3,9 +3,9 @@ namespace BuildingBlock.Specification.Unit.Tests;
 /// <summary>Tests for <see cref="RepositoryConstant"/>.</summary>
 public sealed class RepositoryConstantTests
 {
-    [Fact]
     #region Not Found
 
+    [Fact]
     public void NotFound_ShouldHaveDocumentedIdentity()
     {
         var error = RepositoryConstant.Constraints.NotFound.Error;
@@ -27,10 +27,10 @@ public sealed class RepositoryConstantTests
         error.Message.Should().Be($"{nameof(Person)} with id '{id}' was not found.");
     }
 
-    [Fact]
     #endregion
     #region Paging
 
+    [Fact]
     public void PagingConstraints_ShouldMatchDocumentedValues()
     {
         RepositoryConstant.Constraints.Paging.Page.Min.Value.Should().Be(1);
@@ -38,10 +38,10 @@ public sealed class RepositoryConstantTests
         RepositoryConstant.Constraints.Paging.PageSize.Max.Value.Should().Be(1000);
     }
 
-    [Fact]
     #endregion
     #region Required Errors
 
+    [Fact]
     public void RequiredErrors_ShouldMatchDocumentedIdentity()
     {
         var aggregate = RepositoryConstant.Constraints.Aggregate.Required.Error;
@@ -64,10 +64,10 @@ public sealed class RepositoryConstantTests
             .Should().Be("Page size cannot exceed 1000.");
     }
 
-    [Fact]
     #endregion
     #region Defaults
 
+    [Fact]
     public void Defaults_ShouldMatchDocumentedValues()
     {
         RepositoryConstant.Defaults.Page.Should().Be(1);
