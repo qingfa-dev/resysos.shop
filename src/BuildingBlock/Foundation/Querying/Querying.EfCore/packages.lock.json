@@ -52,7 +52,7 @@
       "buildingblock.functional": {
         "type": "Project"
       },
-      "buildingblock.querying": {
+      "buildingblock.querying.core": {
         "type": "Project",
         "dependencies": {
           "BuildingBlock.Contracts": "[1.0.0, )",
