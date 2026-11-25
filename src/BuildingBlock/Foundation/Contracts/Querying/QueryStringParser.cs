@@ -1,4 +1,3 @@
-using BuildingBlock.Contracts.Filtering;
 using BuildingBlock.Contracts.Paging;
 using BuildingBlock.Contracts.Sorting;
 
@@ -11,14 +10,19 @@ namespace BuildingBlock.Contracts.Querying;
 /// </summary>
 /// <remarks>
 /// <para>
-/// A filter clause is <c>field operator value</c>. Supported operators are
-/// <c>==</c>, <c>!=</c>, <c>&gt;</c>, <c>&gt;=</c>, <c>&lt;</c>, <c>&lt;=</c>,
-/// <c>@=</c> (contains), <c>^=</c> (starts with), <c>$=</c> (ends with),
-/// <c>|=</c> (any of, values separated by <c>|</c>), <c>isnull</c> and <c>isnotnull</c>.
+/// The <c>filter</c> value is a boolean expression parsed by <see cref="FilterParser"/>:
+/// conditions combine with <c>and</c> (or a comma), <c>or</c>, <c>not</c> and parentheses.
+/// A condition is <c>field operator value</c> with word operators (<c>eq</c>, <c>neq</c>,
+/// <c>gt</c>, <c>gte</c>, <c>lt</c>, <c>lte</c>, <c>contains</c>, <c>startswith</c>,
+/// <c>endswith</c>, <c>in</c>, <c>notin</c>, <c>between</c>, <c>isnull</c>, <c>isnotnull</c>)
+/// or their legacy symbol aliases (<c>==</c>, <c>!=</c>, <c>&gt;</c>, <c>&gt;=</c>,
+/// <c>&lt;</c>, <c>&lt;=</c>, <c>@=</c>, <c>^=</c>, <c>$=</c>, <c>|=</c>).
 /// </para>
 /// <para>
-/// Clauses are separated by commas. Wrap a value in single quotes to keep a comma in it.
-/// An unquoted <c>null</c> becomes a null check; quote it for the literal text.
+/// The full tree is exposed on <see cref="QueryRequest.Filter"/>; the flat-AND projection
+/// <see cref="QueryRequest.Filters"/> is populated only when the expression is an AND of
+/// conditions. Wrap a value in single quotes to keep a comma in it. An unquoted <c>null</c>
+/// becomes a null check; quote it for the literal text.
 /// </para>
 /// <para>
 /// A sort clause is a field name, optionally prefixed with <c>-</c> or suffixed with
@@ -44,7 +48,7 @@ public static partial class QueryStringParser
         int page,
         int pageSize)
     {
-        var filters = ParseFilters(filter);
+        var filters = ParseFilter(filter);
         if (filters.IsFailure)
         {
             return Result.Failure<QueryRequest>(filters.Errors);
@@ -59,7 +63,8 @@ public static partial class QueryStringParser
         return QueryGuard.Complete(new QueryRequest
         {
             Paging = new PagedRequest { Page = page, PageSize = pageSize },
-            Filters = filters.Value,
+            Filter = filters.Value.Filter,
+            Filters = filters.Value.Filters,
             Sorts = sorts.Value
         });
     }
@@ -67,28 +72,6 @@ public static partial class QueryStringParser
     #endregion
 
     #region Lists
-
-    private static Result<IReadOnlyList<FilterDescriptor>> ParseFilters(string? filter)
-    {
-        List<FilterDescriptor> descriptors = [];
-        if (string.IsNullOrWhiteSpace(filter))
-        {
-            return Result.Success<IReadOnlyList<FilterDescriptor>>(descriptors);
-        }
-
-        foreach (string clause in SplitClauses(filter))
-        {
-            var parsed = ParseClause(clause);
-            if (parsed.IsFailure)
-            {
-                return Result.Failure<IReadOnlyList<FilterDescriptor>>(parsed.Errors);
-            }
-
-            descriptors.Add(parsed.Value);
-        }
-
-        return Result.Success<IReadOnlyList<FilterDescriptor>>(descriptors);
-    }
 
     private static Result<IReadOnlyList<SortDescriptor>> ParseSorts(string? orderBy)
     {

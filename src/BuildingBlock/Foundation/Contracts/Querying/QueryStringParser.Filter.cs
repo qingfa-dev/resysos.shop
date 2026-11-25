@@ -5,184 +5,78 @@ namespace BuildingBlock.Contracts.Querying;
 /// <summary>Filter-clause parsing for <see cref="QueryStringParser"/>.</summary>
 public static partial class QueryStringParser
 {
-    #region Operators
+    #region Parse
 
-    private static readonly string[] SymbolOperators =
-    [
-        "==", "!=", ">=", "<=", "@=", "^=", "$=", "|=", ">", "<"
-    ];
-
-    #endregion
-
-    #region Clause
-
-    private static Result<FilterDescriptor> ParseClause(string clause)
+    private static Result<ParsedFilter> ParseFilter(string? filter)
     {
-        string text = clause.Trim();
-        if (text.Length == 0)
+        if (string.IsNullOrWhiteSpace(filter))
         {
-            return InvalidFilter("A filter clause is empty.");
+            return Result.Success(new ParsedFilter(null, []));
         }
 
-        int length = 0;
-        while (length < text.Length && IsFieldCharacter(text[length]))
+        var parsed = FilterParser.Parse(filter);
+        if (parsed.IsFailure)
         {
-            length++;
+            return Result.Failure<ParsedFilter>(parsed.Errors.Select(MapFilterError).ToList());
         }
 
-        var field = FilterGuard.ValidField(text[..length], text);
-        if (field.IsFailure)
-        {
-            return Result.Failure<FilterDescriptor>(field.Errors);
-        }
-
-        string remainder = text[length..].TrimStart();
-        if (remainder.Length == 0)
-        {
-            return InvalidFilter($"'{field.Value}' has no operator.")
-                .MapError(error => error.WithField(field.Value));
-        }
-
-        if (TryReadNullCheck(field.Value, remainder, out Result<FilterDescriptor> nullCheck))
-        {
-            return nullCheck;
-        }
-
-        foreach (string symbol in SymbolOperators)
-        {
-            if (!remainder.StartsWith(symbol, StringComparison.Ordinal))
-            {
-                continue;
-            }
-
-            string raw = remainder[symbol.Length..].Trim();
-            return BuildDescriptor(field.Value, ToOperator(symbol), raw);
-        }
-
-        return InvalidFilter($"'{remainder}' is not a known operator for '{field.Value}'.")
-            .MapError(error => error.WithField(field.Value));
+        return Result.Success(new ParsedFilter(parsed.Value, Flatten(parsed.Value)));
     }
 
     #endregion
 
-    #region Descriptor
+    #region Projection
 
-    private static Result<FilterDescriptor> BuildDescriptor(
-        string field,
-        FilterOperator @operator,
-        string raw)
+    private static IReadOnlyList<FilterDescriptor> Flatten(FilterNode node)
     {
-        if (@operator is FilterOperator.In)
+        if (node is FilterCondition condition)
         {
-            List<string> values = [];
-            foreach (string part in raw.Split(FilterConstant.Defaults.ValueSeparator))
-            {
-                if (TryReadValue(part.Trim(), out string value, out _))
-                {
-                    values.Add(value);
-                }
-            }
-
-            return values.Count == 0
-                ? InvalidFilter($"'{field}' has no values after '|='.")
-                    .MapError(error => error.WithField(field))
-                : Result.Success(new FilterDescriptor
-                {
-                    Field = field,
-                    Operator = FilterOperator.In,
-                    Values = values
-                });
+            return [ToDescriptor(condition)];
         }
 
-        if (!TryReadValue(raw, out string text, out bool quoted))
+        if (node is not FilterGroup { Operator: FilterGroupOperator.And } group)
         {
-            return InvalidFilter($"'{field}' has no value.")
-                .MapError(error => error.WithField(field));
+            return [];
         }
 
-        if (!quoted && text.Equals("null", StringComparison.OrdinalIgnoreCase))
+        List<FilterDescriptor> descriptors = [];
+        foreach (FilterNode child in group.Children)
         {
-            if (@operator is FilterOperator.Eq)
+            if (child is not FilterCondition leaf)
             {
-                return Result.Success(new FilterDescriptor
-                {
-                    Field = field,
-                    Operator = FilterOperator.IsNull
-                });
+                return [];
             }
 
-            if (@operator is FilterOperator.Ne)
-            {
-                return Result.Success(new FilterDescriptor
-                {
-                    Field = field,
-                    Operator = FilterOperator.IsNotNull
-                });
-            }
-
-            return InvalidFilter($"'{field} null' only works with '==' or '!='.")
-                .MapError(error => error.WithField(field));
+            descriptors.Add(ToDescriptor(leaf));
         }
 
-        return Result.Success(new FilterDescriptor
-        {
-            Field = field,
-            Operator = @operator,
-            Value = text
-        });
+        return descriptors;
     }
 
-    private static bool TryReadNullCheck(
-        string field,
-        string remainder,
-        out Result<FilterDescriptor> result)
-    {
-        foreach ((string word, FilterOperator @operator) in new[]
+    private static FilterDescriptor ToDescriptor(FilterCondition condition)
+        => new()
         {
-            ("isnotnull", FilterOperator.IsNotNull),
-            ("isnull", FilterOperator.IsNull)
-        })
-        {
-            if (!remainder.StartsWith(word, StringComparison.OrdinalIgnoreCase))
-            {
-                continue;
-            }
-
-            string trailing = remainder[word.Length..].Trim();
-            result = trailing.Length == 0
-                ? Result.Success(new FilterDescriptor { Field = field, Operator = @operator })
-                : InvalidFilter($"'{field} {word}' takes no value.")
-                    .MapError(error => error.WithField(field));
-
-            return true;
-        }
-
-        result = Result.Success(new FilterDescriptor { Field = field });
-        return false;
-    }
-
-    #endregion
-
-    #region Mapping
-
-    private static FilterOperator ToOperator(string symbol)
-        => symbol switch
-        {
-            "==" => FilterOperator.Eq,
-            "!=" => FilterOperator.Ne,
-            ">" => FilterOperator.Gt,
-            ">=" => FilterOperator.Gte,
-            "<" => FilterOperator.Lt,
-            "<=" => FilterOperator.Lte,
-            "@=" => FilterOperator.Contains,
-            "^=" => FilterOperator.StartsWith,
-            "$=" => FilterOperator.EndsWith,
-            "|=" => FilterOperator.In,
-            _ => FilterOperator.Eq
+            Field = condition.Field,
+            Operator = condition.Operator,
+            Value = condition.Value,
+            Values = condition.Values
         };
 
-    private static Result<FilterDescriptor> InvalidFilter(string message)
-        => Result.Failure<FilterDescriptor>(FilterConstant.Constraints.Clause.Invalid(message));
+    #endregion
+
+    #region Errors
+
+    private static Error MapFilterError(Error error)
+        => error.Code.StartsWith("filter.lex.", StringComparison.Ordinal)
+            ? FilterConstant.Constraints.Clause.Invalid(error.Message)
+            : error;
+
+    #endregion
+
+    #region State
+
+    /// <summary>The parsed filter tree and its flat-AND descriptor projection.</summary>
+    private sealed record ParsedFilter(FilterNode? Filter, IReadOnlyList<FilterDescriptor> Filters);
 
     #endregion
 }

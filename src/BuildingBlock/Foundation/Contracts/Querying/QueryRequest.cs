@@ -18,6 +18,13 @@ public sealed record QueryRequest
     /// <summary>Gets the filter clauses, combined with AND.</summary>
     public IReadOnlyList<FilterDescriptor> Filters { get; init; } = [];
 
+    /// <summary>
+    /// Gets the full filter expression tree, including OR, NOT and parentheses. It is populated
+    /// for every parsed filter, while <see cref="Filters"/> is populated only when the expression
+    /// is a flat AND of conditions.
+    /// </summary>
+    public FilterNode? Filter { get; init; }
+
     /// <summary>Gets the sort clauses, applied in order.</summary>
     public IReadOnlyList<SortDescriptor> Sorts { get; init; } = [];
 

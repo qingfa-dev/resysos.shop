@@ -43,7 +43,27 @@ public enum FilterOperator
     IsNull,
 
     /// <summary>The field is not null.</summary>
-    IsNotNull
+    IsNotNull,
+
+    #endregion
+
+    #region Extended
+
+    /// <summary>Equal to none of the supplied values.</summary>
+    NotIn,
+
+    /// <summary>Within the inclusive range of two supplied values.</summary>
+    Between,
+
+    #endregion
+
+    #region Collection
+
+    /// <summary>At least one element of a collection matches the nested filter.</summary>
+    Any,
+
+    /// <summary>Every element of a collection matches the nested filter.</summary>
+    All
 
     #endregion
 }

@@ -114,6 +114,44 @@ public sealed class QueryStringParserTests
         result.Value.Filters[0].Field.Should().Be("address.city");
     }
 
+    [Fact]
+    public void Parse_FlatAnd_ShouldStillPopulateDescriptors()
+    {
+        var request = QueryStringParser.Parse("age>=18,name==Ada", null, 1, 20).Value;
+
+        request.Filters.Should().HaveCount(2);
+        request.Filter.Should().NotBeNull();
+    }
+
+    [Fact]
+    public void Parse_NoFilter_ShouldLeaveFilterNull()
+    {
+        var request = QueryStringParser.Parse(null, null, 1, 20).Value;
+
+        request.Filter.Should().BeNull();
+        request.Filters.Should().BeEmpty();
+    }
+
+    [Fact]
+    public void Parse_OrFilter_ShouldPopulateFilterButNotDescriptors()
+    {
+        var request = QueryStringParser.Parse("name==ada or total>=10", null, 1, 20).Value;
+
+        request.Filter.Should().NotBeNull();
+        request.Filter.Should().BeOfType<FilterGroup>()
+            .Which.Operator.Should().Be(FilterGroupOperator.Or);
+        request.Filters.Should().BeEmpty();
+    }
+
+    [Fact]
+    public void Parse_NotFilter_ShouldNotPopulateDescriptors()
+    {
+        var request = QueryStringParser.Parse("not name==ada", null, 1, 20).Value;
+
+        request.Filter.Should().BeOfType<FilterNegation>();
+        request.Filters.Should().BeEmpty();
+    }
+
     #endregion
 
     #region Sorts
@@ -204,6 +242,15 @@ public sealed class QueryStringParserTests
     {
         var result = QueryStringParser.Parse("name", "1bad", 1, 20);
 
+        result.Errors[0].Code.Should().Be("query.invalid_filter");
+    }
+
+    [Fact]
+    public void Parse_LexError_ShouldSurfaceAsInvalidFilter()
+    {
+        var result = QueryStringParser.Parse("name eq 'unterminated", null, 1, 20);
+
+        result.IsFailure.Should().BeTrue();
         result.Errors[0].Code.Should().Be("query.invalid_filter");
     }
 
