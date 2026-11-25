@@ -23,5 +23,6 @@
   <Folder Name="/tests/BuildingBlock/Foundation/Specifications/">
     <Project Path="tests/BuildingBlock/Foundation/Specifications/Specification.Abstraction/BuildingBlock.Specification.Abstraction.Unit.Tests.csproj" />
     <Project Path="tests/BuildingBlock/Foundation/Specifications/Specifications.Providers.Unit.Tests/BuildingBlock.Specifications.Providers.Unit.Tests.csproj" />
+    <Project Path="tests/BuildingBlock/Foundation/Specifications/Specifications.Query.Unit.Tests/BuildingBlock.Specifications.Query.Unit.Tests.csproj" />
   </Folder>
 </Solution>
