@@ -2,6 +2,8 @@
   <Folder Name="/src/" />
   <Folder Name="/src/BuildingBlock/" />
   <Folder Name="/src/BuildingBlock/Foundation/">
+    <Project Path="src/BuildingBlock/Foundation/Clock/Clock.Abstractions/BuildingBlock.Clock.Abstractions.csproj" />
+    <Project Path="src/BuildingBlock/Foundation/Clock/Clock.System/BuildingBlock.Clock.System.csproj" />
     <Project Path="src/BuildingBlock/Foundation/Contracts/BuildingBlock.Contracts.csproj" />
     <Project Path="src/BuildingBlock/Foundation/Domain/BuildingBlock.Domain.csproj" />
     <Project Path="src/BuildingBlock/Foundation/Functional/BuildingBlock.Functional.csproj" />
