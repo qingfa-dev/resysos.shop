@@ -43,4 +43,11 @@
     <Project Path="tests/BuildingBlock/Data/Persistence.SqlServer/BuildingBlock.Persistence.SqlServer.Unit.Tests.csproj" />
     <Project Path="tests/BuildingBlock/Data/Persistence.SqlServer.Integration.Tests/BuildingBlock.Persistence.SqlServer.Integration.Tests.csproj" />
   </Folder>
+  <Folder Name="/tests/Testing/">
+    <Project Path="tests/Testing/Testing.Architecture/Testing.Architecture.csproj" />
+    <Project Path="tests/Testing/Testing.Data/Testing.Data.csproj" />
+    <Project Path="tests/Testing/Testing.Integration.Redis/Testing.Integration.Redis.csproj" />
+    <Project Path="tests/Testing/Testing.Integration/Testing.Integration.csproj" />
+    <Project Path="tests/Testing/Testing.Unit/Testing.Unit.csproj" />
+  </Folder>
 </Solution>

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <RequireTestSdk>false</RequireTestSdk>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../../src/BuildingBlock/Foundation/Contracts/BuildingBlock.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.TimeProvider.Testing" />
+  </ItemGroup>
+
+</Project>
