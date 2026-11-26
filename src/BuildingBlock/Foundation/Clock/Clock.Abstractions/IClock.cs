@@ -10,5 +10,5 @@ public interface IClock
     DateTimeOffset UtcNow { get; }
 
     /// <summary>Gets the current UTC date.</summary>
-    DateOnly Today => DateOnly.FromDateTime(UtcNow.UtcDateTime);
+    DateOnly GetToday => DateOnly.FromDateTime(UtcNow.UtcDateTime);
 }

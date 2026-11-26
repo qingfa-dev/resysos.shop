@@ -21,5 +21,5 @@ public sealed class SystemClock : IClock
     public DateTimeOffset UtcNow => _timeProvider.GetUtcNow();
 
     /// <inheritdoc />
-    public DateOnly Today => DateOnly.FromDateTime(UtcNow.UtcDateTime);
+    public DateOnly GetToday => DateOnly.FromDateTime(UtcNow.UtcDateTime);
 }
