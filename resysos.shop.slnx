@@ -19,6 +19,7 @@
     <Project Path="src/BuildingBlock/Data/Persistence/Persistence.PostgreSql/BuildingBlock.Persistence.PostgreSql.csproj" />
     <Project Path="src/BuildingBlock/Data/Persistence/Persistence.SqlServer/BuildingBlock.Persistence.SqlServer.csproj" />
   </Folder>
+  <Folder Name="/src/BuildingBlock/Data/Persistence/" />
   <Folder Name="/src/BuildingBlock/Data/Persistence/Persistence.EfCore/" />
   <Folder Name="/src/BuildingBlock/Data/Persistence/Persistence.EfCore/Extensions/" />
   <Folder Name="/src/BuildingBlock/Data/Persistence/Persistence.EfCore/Extensions/Auditing/" />
@@ -36,13 +37,13 @@
     <Project Path="tests/BuildingBlock/Foundation/Querying/Querying.InMemory.Unit.Tests/BuildingBlock.Querying.InMemory.Unit.Tests.csproj" />
   </Folder>
   <Folder Name="/tests/BuildingBlock/Data/">
-    <Project Path="tests/BuildingBlock/Data/Persistence.Abstractions/BuildingBlock.Persistence.Abstractions.Unit.Tests.csproj" />
-    <Project Path="tests/BuildingBlock/Data/Persistence.EfCore/BuildingBlock.Persistence.EfCore.Unit.Tests.csproj" />
-    <Project Path="tests/BuildingBlock/Data/Persistence.InMemory/BuildingBlock.Persistence.InMemory.Unit.Tests.csproj" />
-    <Project Path="tests/BuildingBlock/Data/Persistence.PostgreSql/BuildingBlock.Persistence.PostgreSql.Unit.Tests.csproj" />
-    <Project Path="tests/BuildingBlock/Data/Persistence.PostgreSql.Integration.Tests/BuildingBlock.Persistence.PostgreSql.Integration.Tests.csproj" />
-    <Project Path="tests/BuildingBlock/Data/Persistence.SqlServer/BuildingBlock.Persistence.SqlServer.Unit.Tests.csproj" />
-    <Project Path="tests/BuildingBlock/Data/Persistence.SqlServer.Integration.Tests/BuildingBlock.Persistence.SqlServer.Integration.Tests.csproj" />
+    <Project Path="tests/BuildingBlock/Data/Persistence/Persistence.Abstractions/BuildingBlock.Persistence.Abstractions.Unit.Tests.csproj" />
+    <Project Path="tests/BuildingBlock/Data/Persistence/Persistence.EfCore/BuildingBlock.Persistence.EfCore.Unit.Tests.csproj" />
+    <Project Path="tests/BuildingBlock/Data/Persistence/Persistence.InMemory/BuildingBlock.Persistence.InMemory.Unit.Tests.csproj" />
+    <Project Path="tests/BuildingBlock/Data/Persistence/Persistence.PostgreSql.Integration.Tests/BuildingBlock.Persistence.PostgreSql.Integration.Tests.csproj" />
+    <Project Path="tests/BuildingBlock/Data/Persistence/Persistence.PostgreSql/BuildingBlock.Persistence.PostgreSql.Unit.Tests.csproj" />
+    <Project Path="tests/BuildingBlock/Data/Persistence/Persistence.SqlServer.Integration.Tests/BuildingBlock.Persistence.SqlServer.Integration.Tests.csproj" />
+    <Project Path="tests/BuildingBlock/Data/Persistence/Persistence.SqlServer/BuildingBlock.Persistence.SqlServer.Unit.Tests.csproj" />
   </Folder>
   <Folder Name="/tests/Testing/">
     <Project Path="tests/Testing/Testing.Architecture/Testing.Architecture.csproj" />
