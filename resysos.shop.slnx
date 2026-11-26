@@ -7,8 +7,6 @@
     <Project Path="src/BuildingBlock/Foundation/Contracts/BuildingBlock.Contracts.csproj" />
     <Project Path="src/BuildingBlock/Foundation/Domain/BuildingBlock.Domain.csproj" />
     <Project Path="src/BuildingBlock/Foundation/Functional/BuildingBlock.Functional.csproj" />
-    <Project Path="src/BuildingBlock/Foundation/Persistence/BuildingBlock.Persistence.csproj" />
-    <Project Path="src/BuildingBlock/Foundation/Persistence.InMemory/BuildingBlock.Persistence.InMemory.csproj" />
     <Project Path="src/BuildingBlock/Foundation/Querying/Querying.Core/BuildingBlock.Querying.Core.csproj" />
     <Project Path="src/BuildingBlock/Foundation/Querying/Querying.Dapper/BuildingBlock.Querying.Dapper.csproj" />
     <Project Path="src/BuildingBlock/Foundation/Querying/Querying.EfCore/BuildingBlock.Querying.EfCore.csproj" />
@@ -21,7 +19,6 @@
   <Folder Name="/tests/BuildingBlock/Foundation/">
     <Project Path="tests/BuildingBlock/Foundation/Contracts/BuildingBlock.Contracts.Unit.Tests.csproj" />
     <Project Path="tests/BuildingBlock/Foundation/Functional/BuildingBlock.Functional.Unit.Test.csproj" />
-    <Project Path="tests/BuildingBlock/Foundation/Persistence/BuildingBlock.Persistence.Unit.Tests.csproj" />
     <Project Path="tests/BuildingBlock/Foundation/Querying/Querying.Core/BuildingBlock.Querying.Core.Unit.Tests.csproj" />
     <Project Path="tests/BuildingBlock/Foundation/Querying/Querying.Dapper.Unit.Tests/BuildingBlock.Querying.Dapper.Unit.Tests.csproj" />
     <Project Path="tests/BuildingBlock/Foundation/Querying/Querying.EfCore.Unit.Tests/BuildingBlock.Querying.EfCore.Unit.Tests.csproj" />
