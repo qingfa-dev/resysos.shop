@@ -14,7 +14,6 @@ global using BuildingBlock.Functional.Results;
 global using BuildingBlock.Querying.Compilation;
 global using BuildingBlock.Querying.Execution;
 global using BuildingBlock.Querying.Facade;
-global using BuildingBlock.Querying.InMemory;
 global using BuildingBlock.Querying.Plan;
 global using BuildingBlock.Querying.Policy;
 global using BuildingBlock.Querying.Security;

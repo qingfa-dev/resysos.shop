@@ -1,4 +1,4 @@
-namespace BuildingBlock.Querying.Unit.Tests;
+namespace BuildingBlock.Querying.InMemory.Unit.Tests;
 
 /// <summary>Tests for <see cref="InMemoryQueryPlanExecutor"/>.</summary>
 public sealed class InMemoryQueryPlanExecutorTests

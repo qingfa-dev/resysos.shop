@@ -33,6 +33,7 @@
     <Project Path="tests/BuildingBlock/Foundation/Querying/Querying.Core/BuildingBlock.Querying.Core.Unit.Tests.csproj" />
     <Project Path="tests/BuildingBlock/Foundation/Querying/Querying.Dapper.Unit.Tests/BuildingBlock.Querying.Dapper.Unit.Tests.csproj" />
     <Project Path="tests/BuildingBlock/Foundation/Querying/Querying.EfCore.Unit.Tests/BuildingBlock.Querying.EfCore.Unit.Tests.csproj" />
+    <Project Path="tests/BuildingBlock/Foundation/Querying/Querying.InMemory.Unit.Tests/BuildingBlock.Querying.InMemory.Unit.Tests.csproj" />
   </Folder>
   <Folder Name="/tests/BuildingBlock/Data/">
     <Project Path="tests/BuildingBlock/Data/Persistence.Abstractions/BuildingBlock.Persistence.Abstractions.Unit.Tests.csproj" />

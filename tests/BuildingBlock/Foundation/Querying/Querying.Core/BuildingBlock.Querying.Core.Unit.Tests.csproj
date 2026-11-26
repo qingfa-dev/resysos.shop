@@ -24,7 +24,6 @@
 
   <ItemGroup>
     <ProjectReference Include="../../../../../src/BuildingBlock/Foundation/Querying/Querying.Core/BuildingBlock.Querying.Core.csproj" />
-    <ProjectReference Include="../../../../../src/BuildingBlock/Foundation/Querying/Querying.InMemory/BuildingBlock.Querying.InMemory.csproj" />
   </ItemGroup>
 
   <ItemGroup>
