@@ -12,6 +12,17 @@
     <Project Path="src/BuildingBlock/Foundation/Querying/Querying.EfCore/BuildingBlock.Querying.EfCore.csproj" />
     <Project Path="src/BuildingBlock/Foundation/Querying/Querying.InMemory/BuildingBlock.Querying.InMemory.csproj" />
   </Folder>
+  <Folder Name="/src/BuildingBlock/Data/">
+    <Project Path="src/BuildingBlock/Data/Persistence/Persistence.Abstractions/BuildingBlock.Persistence.Abstractions.csproj" />
+    <Project Path="src/BuildingBlock/Data/Persistence/Persistence.EfCore/BuildingBlock.Persistence.EfCore.csproj" />
+    <Project Path="src/BuildingBlock/Data/Persistence/Persistence.InMemory/BuildingBlock.Persistence.InMemory.csproj" />
+    <Project Path="src/BuildingBlock/Data/Persistence/Persistence.PostgreSql/BuildingBlock.Persistence.PostgreSql.csproj" />
+    <Project Path="src/BuildingBlock/Data/Persistence/Persistence.SqlServer/BuildingBlock.Persistence.SqlServer.csproj" />
+  </Folder>
+  <Folder Name="/src/BuildingBlock/Data/Persistence/Persistence.EfCore/" />
+  <Folder Name="/src/BuildingBlock/Data/Persistence/Persistence.EfCore/Extensions/" />
+  <Folder Name="/src/BuildingBlock/Data/Persistence/Persistence.EfCore/Extensions/Auditing/" />
+  <Folder Name="/src/BuildingBlock/Data/Persistence/Persistence.EfCore/Extensions/Auditing/Auditing.Abstractions/" />
   <Folder Name="/tests/">
     <Project Path="tests/BuildingBlock/Foundation/Domain/BuildingBlock.Domain.Unit.Test.csproj" />
   </Folder>

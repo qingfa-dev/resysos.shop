@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Persistence.Abstractions/BuildingBlock.Persistence.Abstractions.csproj" />
+    <ProjectReference Include="../../../Foundation/Clock/Clock.Abstractions/BuildingBlock.Clock.Abstractions.csproj" />
+    <ProjectReference Include="../../../Foundation/Domain/BuildingBlock.Domain.csproj" />
+    <ProjectReference Include="../../../Foundation/Functional/BuildingBlock.Functional.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+  </ItemGroup>
+
+</Project>
