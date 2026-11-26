@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AwesomeAssertions" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    <PackageReference Include="Microsoft.Extensions.TimeProvider.Testing" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit.v3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../../../src/BuildingBlock/Foundation/Domain/BuildingBlock.Domain.csproj" />
+    <ProjectReference Include="../../../../src/BuildingBlock/Foundation/Functional/BuildingBlock.Functional.csproj" />
+    <ProjectReference Include="../../../../src/BuildingBlock/Foundation/Clock/Clock.Abstractions/BuildingBlock.Clock.Abstractions.csproj" />
+    <ProjectReference Include="../../../../src/BuildingBlock/Data/Persistence/Persistence.Abstractions/BuildingBlock.Persistence.Abstractions.csproj" />
+    <ProjectReference Include="../../../../src/BuildingBlock/Data/Persistence/Persistence.EfCore/BuildingBlock.Persistence.EfCore.csproj" />
+    <ProjectReference Include="../../../Testing/Testing.Data/Testing.Data.csproj" />
+    <ProjectReference Include="../../../Testing/Testing.Unit/Testing.Unit.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+</Project>

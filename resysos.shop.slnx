@@ -34,4 +34,13 @@
     <Project Path="tests/BuildingBlock/Foundation/Querying/Querying.Dapper.Unit.Tests/BuildingBlock.Querying.Dapper.Unit.Tests.csproj" />
     <Project Path="tests/BuildingBlock/Foundation/Querying/Querying.EfCore.Unit.Tests/BuildingBlock.Querying.EfCore.Unit.Tests.csproj" />
   </Folder>
+  <Folder Name="/tests/BuildingBlock/Data/">
+    <Project Path="tests/BuildingBlock/Data/Persistence.Abstractions/BuildingBlock.Persistence.Abstractions.Unit.Tests.csproj" />
+    <Project Path="tests/BuildingBlock/Data/Persistence.EfCore/BuildingBlock.Persistence.EfCore.Unit.Tests.csproj" />
+    <Project Path="tests/BuildingBlock/Data/Persistence.InMemory/BuildingBlock.Persistence.InMemory.Unit.Tests.csproj" />
+    <Project Path="tests/BuildingBlock/Data/Persistence.PostgreSql/BuildingBlock.Persistence.PostgreSql.Unit.Tests.csproj" />
+    <Project Path="tests/BuildingBlock/Data/Persistence.PostgreSql.Integration.Tests/BuildingBlock.Persistence.PostgreSql.Integration.Tests.csproj" />
+    <Project Path="tests/BuildingBlock/Data/Persistence.SqlServer/BuildingBlock.Persistence.SqlServer.Unit.Tests.csproj" />
+    <Project Path="tests/BuildingBlock/Data/Persistence.SqlServer.Integration.Tests/BuildingBlock.Persistence.SqlServer.Integration.Tests.csproj" />
+  </Folder>
 </Solution>
