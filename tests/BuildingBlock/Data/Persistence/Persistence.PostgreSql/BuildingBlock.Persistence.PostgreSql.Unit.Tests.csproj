@@ -18,11 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../../../src/BuildingBlock/Foundation/Domain/BuildingBlock.Domain.csproj" />
-    <ProjectReference Include="../../../../src/BuildingBlock/Foundation/Functional/BuildingBlock.Functional.csproj" />
-    <ProjectReference Include="../../../../src/BuildingBlock/Data/Persistence/Persistence.Abstractions/BuildingBlock.Persistence.Abstractions.csproj" />
-    <ProjectReference Include="../../../../src/BuildingBlock/Data/Persistence/Persistence.EfCore/BuildingBlock.Persistence.EfCore.csproj" />
-    <ProjectReference Include="../../../../src/BuildingBlock/Data/Persistence/Persistence.PostgreSql/BuildingBlock.Persistence.PostgreSql.csproj" />
+    <ProjectReference Include="../../../../../src/BuildingBlock/Foundation/Domain/BuildingBlock.Domain.csproj" />
+    <ProjectReference Include="../../../../../src/BuildingBlock/Foundation/Functional/BuildingBlock.Functional.csproj" />
+    <ProjectReference Include="../../../../../src/BuildingBlock/Data/Persistence/Persistence.Abstractions/BuildingBlock.Persistence.Abstractions.csproj" />
+    <ProjectReference Include="../../../../../src/BuildingBlock/Data/Persistence/Persistence.EfCore/BuildingBlock.Persistence.EfCore.csproj" />
+    <ProjectReference Include="../../../../../src/BuildingBlock/Data/Persistence/Persistence.PostgreSql/BuildingBlock.Persistence.PostgreSql.csproj" />
   </ItemGroup>
 
   <ItemGroup>

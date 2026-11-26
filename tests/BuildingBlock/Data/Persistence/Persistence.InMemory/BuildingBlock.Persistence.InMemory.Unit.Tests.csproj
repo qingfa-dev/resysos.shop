@@ -14,12 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../../../src/BuildingBlock/Foundation/Domain/BuildingBlock.Domain.csproj" />
-    <ProjectReference Include="../../../../src/BuildingBlock/Foundation/Functional/BuildingBlock.Functional.csproj" />
-    <ProjectReference Include="../../../../src/BuildingBlock/Data/Persistence/Persistence.Abstractions/BuildingBlock.Persistence.Abstractions.csproj" />
-    <ProjectReference Include="../../../../src/BuildingBlock/Data/Persistence/Persistence.InMemory/BuildingBlock.Persistence.InMemory.csproj" />
-    <ProjectReference Include="../../../Testing/Testing.Data/Testing.Data.csproj" />
-    <ProjectReference Include="../../../Testing/Testing.Unit/Testing.Unit.csproj" />
+    <ProjectReference Include="../../../../../src/BuildingBlock/Foundation/Domain/BuildingBlock.Domain.csproj" />
+    <ProjectReference Include="../../../../../src/BuildingBlock/Foundation/Functional/BuildingBlock.Functional.csproj" />
+    <ProjectReference Include="../../../../../src/BuildingBlock/Data/Persistence/Persistence.Abstractions/BuildingBlock.Persistence.Abstractions.csproj" />
+    <ProjectReference Include="../../../../../src/BuildingBlock/Data/Persistence/Persistence.InMemory/BuildingBlock.Persistence.InMemory.csproj" />
+    <ProjectReference Include="../../../../Testing/Testing.Data/Testing.Data.csproj" />
+    <ProjectReference Include="../../../../Testing/Testing.Unit/Testing.Unit.csproj" />
   </ItemGroup>
 
   <ItemGroup>
